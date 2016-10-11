@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pick the Bus</string>
+    <string name="title_activity_maps">Pick the Bus</string>
+    <string name="title_activity_name">Pick the Bus</string>
+    <string name="gps_network_not_enabled">GPS Network Not Enabled</string>
+    <string name="open_location_settings">Open Location Settings</string>
+    <string name="Cancel">Cancel</string>
+    <string name="buttonService">Service</string>
+    <string name="buttonPassenger">Passenger</string>
+    <string name="registerButton">Register</string>
+    <string name="btnDone">Login</string>
+    <string name="etID">Enter ID</string>
+</resources>
