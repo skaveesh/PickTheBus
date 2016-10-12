@@ -40,6 +40,7 @@
             android:layout_column="1"
             android:singleLine="false"
             android:textStyle="bold"
+            android:onClick="onClickPassengerButton"
             android:layout_gravity="fill_horizontal" />
     </GridLayout>
 </RelativeLayout>

@@ -18,6 +18,12 @@ public class FirstActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickPassengerButton(View view){
+        Intent intent = new Intent(this,MapsActivity.class);
+        intent.putExtra("IsPassenger",true);
+        startActivity(intent);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();

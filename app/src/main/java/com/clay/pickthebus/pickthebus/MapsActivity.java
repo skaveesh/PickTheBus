@@ -69,7 +69,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     List<Marker> list = new ArrayList<Marker>(); //marker list
 
 
-
+    boolean passenger = true;
 
 
     @Override
@@ -77,11 +77,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        userName = getIntent().getStringExtra("Username");
-        userID = getIntent().getStringExtra("UserID");
+        passenger = getIntent().getExtras().getBoolean("IsPassenger");
 
-        TextView tvDetails = (TextView)findViewById(R.id.textViewDetails);
-        tvDetails.setText(getIntent().getStringExtra("UserDetails"));
+        if(!passenger) { //if user logged in as a passenger this code block will skip
+            userName = getIntent().getStringExtra("Username");
+            userID = getIntent().getStringExtra("UserID");
+
+            TextView tvDetails = (TextView) findViewById(R.id.textViewDetails);
+            tvDetails.setText(getIntent().getStringExtra("UserDetails"));
+        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -240,9 +244,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
 
-                Marker marker = mMap.addMarker(new MarkerOptions().position(newUserLoc).title(localUserID + " " + localUsername));
-                marker.showInfoWindow();
-                list.add(marker);
+
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(newUserLoc).title(localUserID + " " + localUsername));
+                    marker.showInfoWindow();
+                    list.add(marker);
 
 
 
@@ -280,10 +285,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onLocationChanged(Location location) {
-        userLatitude = location.getLatitude() + "";
-        userLongitude = location.getLongitude() + "";
+        if(!passenger) { //if user logged in as a passenger this code block will skip
+            userLatitude = location.getLatitude() + "";
+            userLongitude = location.getLongitude() + "";
 
-        jsonObject = "{ \"userLocation\" :{\"UserID\":\"" + userID + "\",\"Username\":\"" + userName + "\",\"userLatitude\":\"" + userLatitude + "\",\"userLongitude\":\"" + userLongitude + "\"} }";
+            jsonObject = "{ \"userLocation\" :{\"UserID\":\"" + userID + "\",\"Username\":\"" + userName + "\",\"userLatitude\":\"" + userLatitude + "\",\"userLongitude\":\"" + userLongitude + "\"} }";
 
 
 //        TextView asdas = (TextView) findViewById(R.id.textView);
@@ -291,24 +297,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        asdas.setText(jsonObject);
 
 
+            Callback callback = new Callback() {
+                public void successCallback(String channel, Object response) {
+                }
+
+                public void errorCallback(String channel, PubnubError error) {
+                }
+            };
 
 
-        Callback callback = new Callback() {
-            public void successCallback(String channel, Object response) {
+            // Okey, let's publish(send) message
+            JSONObject ff = null;
+            try {
+                ff = new JSONObject(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            public void errorCallback(String channel, PubnubError error) {
-            }
-        };
-
-
-        // Okey, let's publish(send) message
-        JSONObject ff = null;
-        try {
-            ff = new JSONObject(jsonObject);
-        }catch (JSONException e){
-            e.printStackTrace();
+            pubnub.publish("android_club", ff, callback);
         }
-        pubnub.publish("android_club", ff, callback);
 
     }
 
@@ -340,9 +346,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
             LatLng myLoc = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
-            Marker m = mMap.addMarker(new MarkerOptions().position(myLoc).title(userID +" "+userName));
-            m.showInfoWindow();
-            list.add(m);
+
+            if(!passenger) { //if user logged in as a passenger this code block will skip
+                Marker m = mMap.addMarker(new MarkerOptions().position(myLoc).title(userID + " " + userName));
+                m.showInfoWindow();
+                list.add(m);
+            }
+
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myLoc));
 
             CameraPosition cameraPosition = new CameraPosition.Builder()

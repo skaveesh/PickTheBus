@@ -139,6 +139,7 @@ public class NameActivity extends AppCompatActivity {
                                         intent.putExtra("Username", "["+busnamejson + " / " + busroutejson+"]");
                                         intent.putExtra("UserID", String.valueOf(busidjson));
                                         intent.putExtra("UserDetails","Your ID : "+busidjson+"\nBus Destinations : "+busnamejson+"\nRoute : "+busroutejson+"\nDescription : "+busdescjson);
+                                        intent.putExtra("IsPassenger",false);
                                         startActivity(intent);
 
 
