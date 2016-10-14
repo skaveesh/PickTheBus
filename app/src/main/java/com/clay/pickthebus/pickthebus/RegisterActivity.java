@@ -60,65 +60,76 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                StringRequest request = new StringRequest(Request.Method.POST, inserturl, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        final String uid = response;
+                InternetChecker netcheck = new InternetChecker();
 
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(RegisterActivity.this);
-                        builder1.setMessage("Successfully Registered.\nYour User ID is " + uid);
-                        builder1.setCancelable(true);
+                if(busname.getText().toString().equals("") || busname.getText().toString().trim().length() == 0 || busname.getText().toString().equals(null)){
+                    Toast.makeText(RegisterActivity.this, "Please Fill the Required Fields", Toast.LENGTH_LONG).show();
+                }
+                else if(busroute.getText().toString().equals("") || busroute.getText().toString().equals(" ") || busroute.getText().toString().equals(null)){
+                    Toast.makeText(RegisterActivity.this, "Please Fill the Required Fields", Toast.LENGTH_LONG).show();
+                }
+                else if (!netcheck.haveNetworkConnection(RegisterActivity.this)) { //say user to enable internet if device isn't connected to internet.
+                    Toast.makeText(RegisterActivity.this, "Please Enable Mobile Data/Wi-Fi", Toast.LENGTH_LONG).show();
+                }
+                else {
 
-                        builder1.setPositiveButton(
-                                "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
+                    StringRequest request = new StringRequest(Request.Method.POST, inserturl, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            final String uid = response;
 
-                                        //save the user id inside the app for later use
-                                        SharedPreferences settings = RegisterActivity.this.getSharedPreferences("userdetails", MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = settings.edit();
-                                        editor.clear();
-                                        editor.putInt("userid", Integer.parseInt(uid));
-                                        editor.commit();
-                                        Toast.makeText(RegisterActivity.this, "Login ID is saved..", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(RegisterActivity.this);
+                            builder1.setMessage("Successfully Registered.\nYour User ID is " + uid);
+                            builder1.setCancelable(true);
 
-                                        busname.setText("");
-                                        busroute.setText("");
-                                        busdesc.setText("");
+                            builder1.setPositiveButton(
+                                    "OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
 
-                                        startNameActivity();
-                                        dialog.cancel();
-                                    }
-                                });
+                                            //save the user id inside the app for later use
+                                            SharedPreferences settings = RegisterActivity.this.getSharedPreferences("userdetails", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = settings.edit();
+                                            editor.clear();
+                                            editor.putInt("userid", Integer.parseInt(uid));
+                                            editor.commit();
+                                            Toast.makeText(RegisterActivity.this, "Login ID is saved..", Toast.LENGTH_SHORT).show();
 
-                        AlertDialog alert11 = builder1.create();
-                        alert11.show();
+                                            busname.setText("");
+                                            busroute.setText("");
+                                            busdesc.setText("");
+
+                                            startNameActivity();
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
 
 
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
+                        }
 
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> parameters = new HashMap<String, String>();
+                            parameters.put("name", busname.getText().toString());
+                            parameters.put("route", busroute.getText().toString());
+                            parameters.put("desc", busdesc.getText().toString());
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                            return parameters;
+                        }
+                    };
 
-                    }
+                    requestQueue.add(request);
 
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String,String> parameters = new HashMap<String, String>();
-                        parameters.put("name",busname.getText().toString());
-                        parameters.put("route",busroute.getText().toString());
-                        parameters.put("desc",busdesc.getText().toString());
-
-                        return parameters;
-                    }
-                };
-
-                requestQueue.add(request);
-
+                }
             }
         });
 
