@@ -7,7 +7,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.clay.pickthebus.pickthebus.RegisterActivity"
-    android:background="#080941">
+    android:orientation="vertical"
+    android:background="@drawable/texturerepeat">
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,7 +53,7 @@
         android:layout_marginTop="34dp"
         android:layout_alignLeft="@+id/busroutetxt"
         android:layout_alignStart="@+id/busroutetxt"
-        android:hint="Kandy Pettah"
+        android:hint="@string/busnametxt"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
         android:textColor="#e1e1e1"
         android:textColorHint="#818080"
@@ -66,7 +67,7 @@
         android:layout_below="@+id/busnametxt"
         android:layout_alignLeft="@+id/busdesctxt"
         android:layout_alignStart="@+id/busdesctxt"
-        android:hint="1"
+        android:hint="@string/busroutetxt"
         android:digits="123456789/"
         android:textColor="#e1e1e1"
         android:textColorHint="#818080"
@@ -85,7 +86,7 @@
         android:layout_below="@+id/busroutetxt"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="(Optional)"
+        android:hint="@string/busdesctxt"
         android:textColor="#e1e1e1"
         android:textColorHint="#818080"
         android:foregroundTintMode="screen"
@@ -94,16 +95,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register Bus"
+        android:text="@string/regbusbtn"
         android:id="@+id/regbusbtn"
         android:layout_below="@+id/busdesctxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#fffde3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register Your Bus as a Service :"
+        android:text="@string/textView8"
         android:id="@+id/textView8"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/textView6"

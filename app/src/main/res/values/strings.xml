@@ -10,4 +10,11 @@
     <string name="registerButton">Register</string>
     <string name="btnDone">Login</string>
     <string name="etID">Enter ID</string>
+    <string name="passengerHint">Your Location is Displayed as a Blue Dot on the Map When You Have GPS.</string>
+    <string name="about">about</string>
+    <string name="busnametxt">Kandy Pettah</string>
+    <string name="busroutetxt">1</string>
+    <string name="busdesctxt">(Optional)</string>
+    <string name="regbusbtn">Register Bus</string>
+    <string name="textView8">Register Your Bus as a Service :</string>
 </resources>

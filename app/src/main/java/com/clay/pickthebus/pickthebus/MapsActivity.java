@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -85,6 +86,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             TextView tvDetails = (TextView) findViewById(R.id.textViewDetails);
             tvDetails.setText(getIntent().getStringExtra("UserDetails"));
+        }else{
+            TextView tvDetails = (TextView) findViewById(R.id.textViewDetails);
+            tvDetails.setText(R.string.passengerHint);
         }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

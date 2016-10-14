@@ -4,9 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:weightSum="1"
-    android:background="#080941">
+    android:orientation="vertical"
+    android:background="@drawable/texturerepeat">
 
     <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
         <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
@@ -38,10 +38,10 @@
         android:layout_marginTop="20dp"
         android:hint="@string/etID"
         android:backgroundTint="#e1e1e1"
-        android:textColorHint="#818080" />
+        android:textColorHint="#818080"
+        android:textColor="#e1e1e1" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnDone"
@@ -49,7 +49,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginLeft="13dp" />
+        android:layout_marginLeft="13dp"
+        android:backgroundTint="#fffde3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
         android:id="@+id/registerButton"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:onClick="onClickRegister" />
+        android:onClick="onClickRegister"
+        android:backgroundTint="#fffde3" />
 
 </LinearLayout>
 

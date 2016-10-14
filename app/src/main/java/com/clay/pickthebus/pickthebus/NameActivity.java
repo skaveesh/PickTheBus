@@ -112,9 +112,6 @@ public class NameActivity extends AppCompatActivity {
 
                     //////////Getting login details from the database
 
-
-
-
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                             viewurl+etID.getText().toString(),
                             new Response.Listener<JSONObject>() {
@@ -209,23 +206,10 @@ public class NameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-//    private boolean haveNetworkConnection() { //internet connection checking function
-//        ConnectivityManager cm = (ConnectivityManager) NameActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-//        if (activeNetwork != null) { // connected to the internet
-//            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-//                // connected to wifi
-//                Toast.makeText(NameActivity.this, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
-//            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-//                // connected to the mobile provider's data plan
-//                Toast.makeText(NameActivity.this, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
-//            }
-//            return true;
-//        } else {// not connected to the internet
-//            return false;
-//        }
-//
-//    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
+    }
 
 }
