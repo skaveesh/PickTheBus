@@ -17,4 +17,14 @@
     <string name="busdesctxt">(Optional)</string>
     <string name="regbusbtn">Register Bus</string>
     <string name="textView8">Register Your Bus as a Service :</string>
+    <string name="developedby">Developed By : \n Samintha Kaveesh\n Ayodya Wijesinghe\n Chulan Kotudurage\n Namal Sirikumara\n Priyashan Madusanka\n Yashod Sulakshana\n Themiya Lakruwan\n Kalana Wijesekara</string>
+    <string name="version">Version 1.0.0</string>
+    <string name="appname">Pick the Bus</string>
+    <string name="copyright">All Right Reserved © 2016 Clay Team</string>
+    <string name="mainimageresource">main image of application</string>
+    <string name="logintext">Login</string>
+    <string name="notregisteredtext">Not Registered Yet? Register Now..!</string>
+    <string name="busdesctextview">Bus Destinations</string>
+    <string name="busroutetextview">Bus Route</string>
+    <string name="busdescripttextview">Description</string>
 </resources>

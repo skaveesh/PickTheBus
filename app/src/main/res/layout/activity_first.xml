@@ -24,7 +24,7 @@
         android:visibility="visible">
 
         <Button
-            android:layout_width="172dp"
+            android:layout_width="168dp"
             android:layout_height="wrap_content"
             android:text="@string/buttonService"
             android:id="@+id/buttonService"
@@ -35,7 +35,7 @@
             android:backgroundTint="#fffde3" />
 
         <Button
-            android:layout_width="172dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buttonPassenger"
             android:id="@+id/buttonPassenger"

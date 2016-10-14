@@ -139,4 +139,16 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NameActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,NameActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
+    }
 }
