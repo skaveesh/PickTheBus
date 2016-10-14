@@ -1,7 +1,11 @@
 package com.clay.pickthebus.pickthebus;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -211,6 +215,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         /////////////////////////////////////end of pubnub///////////////////////////////////
 
+
     }
 
     private void showMessage(final String message) {
@@ -387,4 +392,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .addApi(LocationServices.API)
                 .build();
     }
+
 }
