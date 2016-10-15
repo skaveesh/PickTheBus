@@ -30,6 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -112,7 +113,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4000, 2, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
 
         mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
@@ -255,7 +256,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
                     Marker marker = mMap.addMarker(new MarkerOptions().position(newUserLoc).title(localUserID + " " + localUsername));
-                    marker.showInfoWindow();
+                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.markerbusicon));
                     list.add(marker);
 
 
@@ -359,6 +360,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(!passenger) { //if user logged in as a passenger this code block will skip
                 Marker m = mMap.addMarker(new MarkerOptions().position(myLoc).title(userID + " " + userName));
                 m.showInfoWindow();
+                m.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.markerbusicon));
                 list.add(m);
             }
 
